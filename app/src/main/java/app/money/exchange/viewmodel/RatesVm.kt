@@ -32,7 +32,7 @@ class RatesVm : ViewModel() {
                         moneyvalue = value
                         Log.e("DATA $key", "ANG SunodValue $moneyvalue")
 
-                        //Second Click ng spinner di na lumalabas to
+                        //Second value and so on ng spinner di na lumalabas to
                         var converted = 0.0
                             converted = (moneyvalue.toInt() + 20).toDouble()
                         Log.e("DATA", "ANG SAGOT ${converted.toDouble()}")
