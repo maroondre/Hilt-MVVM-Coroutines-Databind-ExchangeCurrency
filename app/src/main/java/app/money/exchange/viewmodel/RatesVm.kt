@@ -1,6 +1,8 @@
 package app.money.exchange.viewmodel
 
 import android.util.Log
+import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +17,8 @@ class RatesVm : ViewModel() {
 
      var RatesMD: MutableLiveData<HashMap<String, String>> = MutableLiveData()
      var moneyvalue : String = ""
+     var inputNumber : String? = null
+    var totalInputs = MutableLiveData("")
 
     val exe = CoroutineExceptionHandler { _, _ ->
         RatesMD.postValue(null)
@@ -31,21 +35,8 @@ class RatesVm : ViewModel() {
                         Log.e("DATA $key", "ANG Value $value")
                         moneyvalue = value
                         Log.e("DATA $key", "ANG SunodValue $moneyvalue")
-
-                        //Second value and so on ng spinner di na lumalabas to
-                        var converted = 0.0
-                            converted = (moneyvalue.toInt() + 20).toDouble()
-                        Log.e("DATA", "ANG SAGOT ${converted.toDouble()}")
                     }
                 }
-                    /*println("While Loop:")
-                    val iterator: Iterator<*> = retroValue.rates.entries.iterator()
-                    while (iterator.hasNext()) {
-                        if(iterator.equals(tocountry)) {
-                            val me2 = iterator.next() as Map.Entry<*, *>
-                            Log.e("Key: " + me2.key, " & Value: " + me2.value)
-                        }
-                    }*/
 
                 RatesMD.postValue(retroValue.rates)
             }catch (e : Exception) {
@@ -56,8 +47,14 @@ class RatesVm : ViewModel() {
         return RatesMD
     }
 
-    fun refresh(from : String, to :String){
-        ratesVMCalls(from,to)
+    fun onClick(view : View){
+        if (inputNumber.isNullOrEmpty()){
+            inputNumber = "0"
+            totalInputs.value = (inputNumber!!.toInt() * moneyvalue.toDouble()).toString()
+        }else{
+            totalInputs.value = (inputNumber!!.toInt() * moneyvalue.toDouble()).toString()
+        }
+        Log.e("DATA", "Nakikiclick ang $totalInputs = $inputNumber * $moneyvalue")
     }
 }
 
