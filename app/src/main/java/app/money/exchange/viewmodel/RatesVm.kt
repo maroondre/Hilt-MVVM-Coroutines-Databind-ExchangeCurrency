@@ -50,9 +50,9 @@ class RatesVm : ViewModel() {
     fun onClick(view : View){
         if (inputNumber.isNullOrEmpty()){
             inputNumber = "0"
-            totalInputs.value = (inputNumber!!.toInt() * moneyvalue.toDouble()).toString()
+            totalInputs.value = (inputNumber!!.toDouble() * moneyvalue.toDouble()).toString()
         }else{
-            totalInputs.value = (inputNumber!!.toInt() * moneyvalue.toDouble()).toString()
+            totalInputs.value = (inputNumber!!.toDouble() * moneyvalue.toDouble()).toString()
         }
         Log.e("DATA", "Nakikiclick ang $totalInputs = $inputNumber * $moneyvalue")
     }

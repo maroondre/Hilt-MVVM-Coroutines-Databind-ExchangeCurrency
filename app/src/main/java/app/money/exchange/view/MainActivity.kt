@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         viewModel = ViewModelProvider(this).get(viewModel::class.java)
         viewModel.ratesVMCalls(from,to).observe(this, Observer {
             if(it == null) {
-                Toast.makeText(this,"WALA LAMAN LODS",Toast.LENGTH_LONG).show()
+
             }else{
                 Toast.makeText(this,"MARAMING LAMAN LODS",Toast.LENGTH_LONG).show()
             }
